@@ -9,14 +9,14 @@ import (
 	"net/http/httputil"
 )
 
-type MehCommand struct {
+type HappyCommand struct {
 	Description string `short:"d" long:"description" description:"Write your message" required:"true"`
 }
 
-func (m *MehCommand) Execute(args []string) error {
+func (h *HappyCommand) Execute(args []string) error {
 	r := RetroItem{
-		Description: m.Description,
-		Category:    CategoryMeh,
+		Description: h.Description,
+		Category:    CategoryHappy,
 	}
 
 	b, err := json.Marshal(r)

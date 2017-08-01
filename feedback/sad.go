@@ -1,13 +1,13 @@
 package feedback
 
-type MehCommand struct {
+type SadCommand struct {
 	Description string `short:"d" long:"description" description:"Write your message" required:"true"`
 }
 
-func (m *MehCommand) Execute(args []string) error {
+func (s *SadCommand) Execute(args []string) error {
 	r := RetroItem{
-		Description: m.Description,
-		Category:    CategoryMeh,
+		Description: s.Description,
+		Category:    CategorySad,
 	}
 
 	return Run(r)

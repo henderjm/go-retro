@@ -5,7 +5,7 @@ import (
 
 	"fmt"
 
-	"github.com/henderjm/go-feed/feedback"
+	"github.com/henderjm/go-feedback/feedback"
 	"github.com/jessevdk/go-flags"
 )
 

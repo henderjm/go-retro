@@ -8,14 +8,21 @@ import (
 	"net/http/httputil"
 )
 
-type ActionsCommand struct{}
+type ActionsCommand struct {
+}
 
 type Item struct {
 	Description int64 `json:"id"`
 }
 
-type ActionList struct {
-	ActionItems Item `json:"retro"`
+type RetroBoard struct {
+	Board struct {
+		ActionItems []struct {
+			Description string `json:"description"`
+			ID          uint64 `json:"id"`
+			Done        bool   `json:"done"`
+		} `json:"action_items"`
+	} `json:"retro"`
 }
 
 func (a *ActionsCommand) Execute(args []string) error {
@@ -46,16 +53,15 @@ func (a *ActionsCommand) Execute(args []string) error {
 		return err
 	}
 
-	var actions = new(ActionList)
+	var actions = new(RetroBoard)
 	err = json.Unmarshal(b.Bytes(), &actions)
 	if err != nil {
 		return err
 	}
 
-	fmt.Println(actions)
-	//for _, a := range actions.ActionItems {
-	//	fmt.Println(a.Description)
-	//}
+	for _, a := range actions.Board.ActionItems {
+		fmt.Println(a.Description)
+	}
 
 	return nil
 }

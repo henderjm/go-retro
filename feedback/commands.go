@@ -1,11 +1,12 @@
 package feedback
 
 type FeedbackCommand struct {
-	RetroId string         `short:"r" long:"retro-id" description:"Retro Board Id" required:"true"`
-	Meh     MehCommand     `command:"meh" alias:"m" description:"Raise a potential concern"`
-	Happy   HappyCommand   `command:"happy" alias:"h" description:"Express your happiness"`
-	Sad     SadCommand     `command:"sad" alias:"s" description:"Why so sad??"`
-	Actions ActionsCommand `command:"actions" alias:"a" description:"See all actions"`
+	RetroId    string            `short:"r" long:"retro-id" description:"Retro Board Id" required:"true"`
+	Meh        MehCommand        `command:"meh" alias:"m" description:"Raise a potential concern"`
+	Happy      HappyCommand      `command:"happy" alias:"h" description:"Express your happiness"`
+	Sad        SadCommand        `command:"sad" alias:"s" description:"Why so sad??"`
+	Actions    ActionsCommand    `command:"actions" alias:"a" description:"See all actions"`
+	StartRetro StartRetroCommand `command:"start-retro" alias:"sr" description:"Let's start retro-ing"`
 }
 
 type Category string
@@ -16,9 +17,21 @@ const (
 	CategorySad   Category = "sad"
 )
 
+type RetroBoard struct {
+	Board struct {
+		ActionItems []struct {
+			Description string `json:"description"`
+			ID          uint64 `json:"id"`
+			Done        bool   `json:"done"`
+		} `json:"action_items"`
+		RetroItems []RetroItem `json:"items"`
+	} `json:"retro"`
+}
+
 type RetroItem struct {
 	Description string   `json:"description"`
 	Category    Category `json:"category"`
+	Done        bool     `json:"done,omitempty"`
 }
 
 var FeedBack FeedbackCommand

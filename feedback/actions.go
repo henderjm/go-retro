@@ -7,10 +7,6 @@ import (
 type ActionsCommand struct {
 }
 
-type Item struct {
-	Description int64 `json:"id"`
-}
-
 func (a *ActionsCommand) Execute(args []string) error {
 	url := "https://retro-api.cfapps.io/retros/330/"
 

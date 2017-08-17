@@ -19,6 +19,7 @@ const (
 
 type RetroBoard struct {
 	Board struct {
+		Slug        string `json:"slug"`
 		ActionItems []struct {
 			Description string `json:"description"`
 			ID          uint64 `json:"id"`
@@ -28,10 +29,16 @@ type RetroBoard struct {
 	} `json:"retro"`
 }
 
+func (i *RetroItem) MarkItemAsDone() error {
+	i.Done = true
+	return nil
+}
+
 type RetroItem struct {
 	Description string   `json:"description"`
 	Category    Category `json:"category"`
 	Done        bool     `json:"done,omitempty"`
+	ID          int64    `json:"id"`
 }
 
 var FeedBack FeedbackCommand

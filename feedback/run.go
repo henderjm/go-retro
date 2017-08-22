@@ -48,15 +48,13 @@ func StartItem(slug string, r RetroItem) error {
 	}
 
 	defer resp.Body.Close()
-	fmt.Println(resp.StatusCode)
-	body, err := ioutil.ReadAll(resp.Body)
+	_, err = ioutil.ReadAll(resp.Body)
 
 	if nil != err {
 		fmt.Println("errorination happened reading the body", err)
 		return err
 	}
 
-	fmt.Println(string(body[:]))
 	return nil
 }
 

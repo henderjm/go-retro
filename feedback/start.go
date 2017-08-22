@@ -16,11 +16,11 @@ func (s *StartRetroCommand) Execute(args []string) error {
 	if err != nil {
 		return err
 	}
-	letsRetro(b)
+	LetsRetro(b)
 	return nil
 }
 
-func letsRetro(rb *RetroBoard) {
+func LetsRetro(rb *RetroBoard) {
 	for _, v := range rb.Board.RetroItems {
 		err := StartItem(rb.Board.Slug, v)
 		if err != nil {
@@ -30,7 +30,7 @@ func letsRetro(rb *RetroBoard) {
 			fmt.Println("You're not done????")
 		}
 		v.MarkItemAsDone()
-		//Patch(rb.Board.Slug, v)
+		Patch(rb.Board.Slug, v)
 	}
 }
 

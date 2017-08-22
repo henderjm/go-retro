@@ -26,8 +26,9 @@ func LetsRetro(rb *RetroBoard) {
 		if err != nil {
 			panic(err)
 		}
-		for startTime(v) {
-			fmt.Println("You're not done????")
+		done := false
+		for !done {
+			done = startTime(v)
 		}
 		v.MarkItemAsDone()
 		Patch(rb.Board.Slug, v)
@@ -64,7 +65,7 @@ func areWeDone(c chan bool) {
 	} else if containsString(nokayResponses, response) {
 		c <- false
 	} else {
-		fmt.Println("Please type yes or no and then press enter:")
+		fmt.Println("Please type y or n and then press enter:")
 		areWeDone(c)
 	}
 }

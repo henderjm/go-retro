@@ -8,7 +8,7 @@ type ActionsCommand struct {
 }
 
 func (a *ActionsCommand) Execute(args []string) error {
-	url := "https://retro-api.cfapps.io/retros/330/"
+	url := fmt.Sprintf("https://retro-api.cfapps.io/retros/%v/", FeedBack.RetroId)
 
 	board, err := GetRetroBoard(url)
 	if err != nil {

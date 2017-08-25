@@ -10,7 +10,7 @@ type StartRetroCommand struct {
 }
 
 func (s *StartRetroCommand) Execute(args []string) error {
-	url := "https://retro-api.cfapps.io/retros/330/"
+	url := fmt.Sprintf("https://retro-api.cfapps.io/retros/%v/", FeedBack.RetroId)
 
 	b, err := GetRetroBoard(url)
 	if err != nil {

@@ -29,7 +29,7 @@ var _ = Describe("Start", func() {
 				"archived_at": null
 			}, {
 				"id": 144147,
-				"description": "Hello World",
+				"description": "Integration tests not done",
 				"category": "sad",
 				"vote_count": 0,
 				"done": false,
@@ -37,7 +37,7 @@ var _ = Describe("Start", func() {
 				"archived_at": null
 			}, {
 				"id": 144148,
-				"description": "Hello World",
+				"description": "Golang",
 				"category": "meh",
 				"vote_count": 0,
 				"done": false,
@@ -46,13 +46,13 @@ var _ = Describe("Start", func() {
 			}],
 			"action_items": [{
 				"id": 23389,
-				"description": "[Mark] Tell teams and mention at anchors meeting to move off zumba!",
+				"description": "[Mark] Tell everyone to use this tool",
 				"done": true,
 				"created_at": "2017-06-02T15:27:36.041Z",
 				"archived_at": null
 			}, {
 				"id": 24104,
-				"description": "[jMe/David] Setup an email list so that we can blast for new releases",
+				"description": "[Mark] Write more tests lul",
 				"done": false,
 				"created_at": "2017-06-08T11:16:16.939Z",
 				"archived_at": null

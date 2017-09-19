@@ -9,10 +9,27 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+	"os/user"
 	"strconv"
 )
 
+type fstatus struct {
+	Token string `json:"token"`
+}
+
 func Run(r RetroItem) error {
+	usr, err := user.Current()
+	if err != nil {
+		return err
+	}
+	file, err := ioutil.ReadFile(fmt.Sprintf("%v/feedback-config.json", usr.HomeDir))
+	if err != nil {
+		return err
+	}
+
+	var status fstatus
+	json.Unmarshal(file, &status)
+
 	b, err := json.Marshal(r)
 	if err != nil {
 		return err
@@ -26,6 +43,7 @@ func Run(r RetroItem) error {
 
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Accept", "application/json")
+	req.Header.Add("Authorization", status.Token)
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {

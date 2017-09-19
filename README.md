@@ -4,7 +4,7 @@ No one likes opening websites, use this tool to post your retros
 * run `go get github.com/henderjm/go-feedback`
 
 ## Usage
-```
+```bash
 Usage:
   go-feedback [OPTIONS] <command>
 
@@ -17,6 +17,7 @@ Help Options:
 Available commands:
   actions      See all actions (aliases: a)
   happy        Express your happiness (aliases: h)
+  login        Login in to retro board (aliases: l)
   meh          Raise a potential concern (aliases: m)
   sad          Why so sad?? (aliases: s)
   start-retro  Let's start retro-ing (aliases: sr)

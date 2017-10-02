@@ -42,4 +42,8 @@ type RetroItem struct {
 	ID          int64    `json:"id"`
 }
 
+type BearerToken struct {
+	Token string `json:"token"`
+}
+
 var FeedBack FeedbackCommand

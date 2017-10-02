@@ -4,8 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"net/http/httputil"
+	"os/user"
 )
 
 func GetRetroBoard(url string) (*RetroBoard, error) {
@@ -14,8 +16,22 @@ func GetRetroBoard(url string) (*RetroBoard, error) {
 		return nil, err
 	}
 
+	usr, err := user.Current()
+	if err != nil {
+		return nil, err
+	}
+
+	file, err := ioutil.ReadFile(fmt.Sprintf("%v/feedback-config.json", usr.HomeDir))
+	if err != nil {
+		return nil, err
+	}
+
+	var bearer BearerToken
+	json.Unmarshal(file, &bearer)
+
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Accept", "application/json")
+	req.Header.Add("Authorization", bearer.Token)
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {

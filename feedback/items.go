@@ -2,9 +2,9 @@ package feedback
 
 import (
 	"fmt"
-	"os"
 
-	"github.com/olekukonko/tablewriter"
+	gotabulate "github.com/bndr/gotabulate"
+	table "github.com/henderjm/go-feedback/table"
 )
 
 type ItemsCommand struct {
@@ -41,12 +41,13 @@ func (a *ItemsCommand) Execute(args []string) error {
 }
 
 func outputTable(h, m, s []string) error {
-	table := tablewriter.NewWriter(os.Stdout)
-	table.SetHeader([]string{"Happy", "Meh", "Sad"})
-
-	items := [][]string(
-	for _, v := range h {
-		table.Append(v)
+	contents, err := table.PadRowsToColumns(h, m, s, "")
+	if err != nil {
+		return err
 	}
+
+	t := gotabulate.Create(contents)
+	t.SetHeaders([]string{"Happy", "Meh", "Sad"})
+
 	return nil
 }
